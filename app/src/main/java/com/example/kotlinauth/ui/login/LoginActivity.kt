@@ -10,10 +10,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 
 import com.example.kotlinauth.R
 
@@ -34,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.login)
+        val createUser = findViewById<TextView>(R.id.textViewCreateUser)
         val loading = findViewById<ProgressBar>(R.id.loading)
 
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
@@ -99,6 +97,12 @@ class LoginActivity : AppCompatActivity() {
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
                 loginViewModel.login(username.text.toString(), password.text.toString())
+            }
+
+            // Creating user in with email and password provided in the text fields
+            createUser.setOnClickListener {
+                loading.visibility = View.VISIBLE
+                loginViewModel.createUser(username.text.toString(), password.text.toString())
             }
         }
     }
