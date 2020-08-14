@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "264045739462",
+    "firebase_url": "https://kotlinauth-27429.firebaseio.com",
+    "project_id": "kotlinauth-27429",
+    "storage_bucket": "kotlinauth-27429.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264045739462:android:7be2654f68d252089c06c7",
+        "android_client_info": {
+          "package_name": "com.example.kotlinauth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "264045739462-oll09895okq2f5jlbncuuje1h0q6kigk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGJg0LXnn2oLehhq8A-TKtJnEUIkD3uwc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "264045739462-oll09895okq2f5jlbncuuje1h0q6kigk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
