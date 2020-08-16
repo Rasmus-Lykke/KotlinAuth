@@ -1,6 +1,5 @@
 package com.example.kotlinauth.data
 
-import android.content.Context
 import com.example.kotlinauth.data.model.LoggedInUser
 
 /**
@@ -23,16 +22,24 @@ class LoginRepository(val dataSource: LoginDataSource) {
         user = null
     }
 
-    fun logout() {
-        user = null
-        dataSource.logout()
+    fun logOut(): Boolean{
+        // handle login
+        val result = dataSource.logOut()
+
+        if (!result) {
+            println(">>>> In LoginViewModel, logout successful")
+            user = null
+        }
+
+        return result
     }
 
     fun login(username: String, password: String): Result<LoggedInUser> {
         // handle login
-        val result = dataSource.login(username, password)
+        val result = dataSource.logIn(username, password)
 
         if (result is Result.Success) {
+            println(">>>> In LoginViewModel, result = success")
             setLoggedInUser(result.data)
         }
 

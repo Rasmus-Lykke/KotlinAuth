@@ -1,6 +1,5 @@
 package com.example.kotlinauth.ui.login
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,13 +19,17 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     fun login(username: String, password: String) {
         // can be launched in a separate asynchronous job
+        // If successful result should contain logged in user
         val result = loginRepository.login(username, password)
+        println(">>>> Result = $result")
 
         if (result is Result.Success) {
+            println(">>>> In LoginViewModel, success")
             _loginResult.value =
                 LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
         } else {
             _loginResult.value = LoginResult(error = R.string.login_failed)
+            println(">>>> In LoginViewModel, error")
         }
     }
 
@@ -40,6 +43,12 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         } else {
             _loginResult.value = LoginResult(error = R.string.login_failed)
         }
+    }
+
+    fun logOut(): Boolean {
+        // can be launched in a separate asynchronous job
+
+        return loginRepository.logOut()
     }
 
     fun loginDataChanged(username: String, password: String) {

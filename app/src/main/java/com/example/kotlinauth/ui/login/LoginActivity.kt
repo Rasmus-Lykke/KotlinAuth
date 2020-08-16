@@ -1,30 +1,39 @@
 package com.example.kotlinauth.ui.login
 
 import android.app.Activity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
-
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.example.kotlinauth.ui.MainMenu.MainActivity
 import com.example.kotlinauth.R
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
+    var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    // OnCompleteListener using this for context?
     companion object Factory {
         fun create(): LoginActivity = LoginActivity()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (auth.currentUser != null) {
+            println("Current userID = ${auth.currentUser!!.uid}")
+            val intent = Intent(this, MainActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }
 
         setContentView(R.layout.activity_login)
 
@@ -107,6 +116,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
@@ -116,10 +126,19 @@ class LoginActivity : AppCompatActivity() {
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
+
+        val intent = Intent(this, MainActivity::class.java)
+        // start your next activity
+        finish()
+        startActivity(intent)
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
+
+        val intent = intent
+        finish()
+        startActivity(intent)
     }
 }
 

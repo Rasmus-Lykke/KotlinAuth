@@ -82,7 +82,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:clickable="true"
-        android:text="TextView"
+        android:text="Create user"
+        android:textColor="#3F51B5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login" />
