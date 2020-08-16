@@ -104,6 +104,7 @@ class LoginActivity : AppCompatActivity() {
 
             // Logging in with email and password provided in the text fields
             login.setOnClickListener {
+                println("Step 1")
                 loading.visibility = View.VISIBLE
                 loginViewModel.login(username.text.toString(), password.text.toString())
             }
@@ -136,9 +137,6 @@ class LoginActivity : AppCompatActivity() {
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
 
-        val intent = intent
-        finish()
-        startActivity(intent)
     }
 }
 

@@ -22,19 +22,9 @@ class LoginRepository(val dataSource: LoginDataSource) {
         user = null
     }
 
-    fun logOut(): Boolean{
-        // handle login
-        val result = dataSource.logOut()
-
-        if (!result) {
-            println(">>>> In LoginViewModel, logout successful")
-            user = null
-        }
-
-        return result
-    }
 
     fun login(username: String, password: String): Result<LoggedInUser> {
+        println("Step 3")
         // handle login
         val result = dataSource.logIn(username, password)
 
@@ -51,6 +41,18 @@ class LoginRepository(val dataSource: LoginDataSource) {
 
         if (result is Result.Success) {
             setLoggedInUser(result.data)
+        }
+
+        return result
+    }
+
+    fun logOut(): Boolean{
+        // handle login
+        val result = dataSource.logOut()
+
+        if (!result) {
+            println(">>>> In LoginViewModel, logout successful")
+            user = null
         }
 
         return result
